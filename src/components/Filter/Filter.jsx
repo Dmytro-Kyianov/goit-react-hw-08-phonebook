@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux';
-import { filterContact } from 'redux/filterContactsSlice';
+import { filterContact } from 'redux/contacts/filterContactsSlice';
 
-import css from './Filter.module.css';
+import { FilterWrap, InputTitle, Input } from './Filter.styled';
 
 export const Filter = () => {
+  
   const dispatch = useDispatch();
 
   const handleInputChange = e => {
@@ -11,14 +12,14 @@ export const Filter = () => {
   };
 
   return (
-    <div>
-      <h3>Find contacts by name</h3>
-      <input
-        type="text"
-        name="filter"
-        onChange={handleInputChange}
-        className={css.input}
-      ></input>
-    </div>
+      <FilterWrap>
+        <InputTitle>Find contacts by name</InputTitle>
+        <Input
+          type="text"
+          name="filter"
+          onChange={handleInputChange}
+          autoComplete="off"
+        />
+      </FilterWrap>
   );
 };

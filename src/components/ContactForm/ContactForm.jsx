@@ -1,8 +1,23 @@
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
-import css from './ContactForm.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContactsThunk } from 'redux/thunk';
+import { addContactsThunk } from 'redux/contacts/contactsOperations';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+
+import {
+  FormWrap,
+  InputWrap,
+  InputTitle,
+  Input,
+  AddBtn,
+} from './ContactForm.styled';
+
+Notify.init({
+  width: '300px',
+  position: 'right-top',
+  closeButton: false,
+  timeout: 2500,
+});
 
 export const ContactForm = () => {
   const { contacts } = useSelector(state => state.contacts);
@@ -24,12 +39,12 @@ export const ContactForm = () => {
     }
   };
 
-  const newContact = { name: name, phone: number };
+  const newContact = { name: name, number: number };
 
   const handleSubmit = e => {
     e.preventDefault(e);
     contacts.find(contact => contact.name === name)
-      ? alert(`${name} is already in contacts`)
+      ? Notify.warning(`${name} is already in contacts`)
       : dispatch(addContactsThunk(newContact));
 
     setName('');
@@ -38,43 +53,37 @@ export const ContactForm = () => {
 
   const nameInputId = nanoid();
   const numberImputId = nanoid();
-  return (
-    <div>
-      <form onSubmit={handleSubmit} className={css.form}>
-        <div className={css.nameInput}>
-          <label htmlFor={nameInputId} className={css.label}>
-            Name
-          </label>
-          <input
-            id={nameInputId}
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleInputChange}
-            className={css.input}
-          />
-        </div>
-        <div className={css.numberInput}>
-          <label htmlFor={numberImputId} className={css.label}>
-            Number
-          </label>
-          <input
-            id={numberImputId}
-            type="tel"
-            name="number"
-            value={number}
-            onChange={handleInputChange}
-            pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-            className={css.input}
-          />
-        </div>
+  return ( 
+    <FormWrap onSubmit={handleSubmit}>
+      <InputWrap>
+        <InputTitle htmlFor={nameInputId}>Name</InputTitle>
+        <Input
+          id={nameInputId}
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleInputChange}
+          autoComplete="off"
+        />
+      </InputWrap>
+      <InputWrap>
+        <InputTitle htmlFor={numberImputId}>Number</InputTitle>
+        <Input
+          id={numberImputId}
+          type="tel"
+          name="number"
+          value={number}
+          onChange={handleInputChange}
+          autoComplete="off"
+          pattern="\+?\d{1,4}?[\-.\s]?\(?\d{1,3}?\)?[\-.\s]?\d{1,4}[\-.\s]?\d{1,4}[\-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+        />
+      </InputWrap>
 
-        <button type="submit" className={css.btnAddContact}>
-          Add contact
-        </button>
-      </form>
-    </div>
+      <AddBtn type="submit" >
+        Add contact
+      </AddBtn>
+    </FormWrap>
   );
 };

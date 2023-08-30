@@ -4,7 +4,7 @@ import {
   addContactsThunk,
   getContactsThunk,
   deleteContactsThunk,
-} from './thunk';
+} from './contactsOperations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -16,13 +16,16 @@ const handleFulfilled = state => {
 };
 
 const handleFulfilledGet = (state, { payload }) => {
+  state.token = payload.token;
   state.contacts = payload;
 };
 const handleFulfilledAdd = (state, { payload }) => {
   state.contacts.push(payload);
+  state.token = payload.token;
 };
 
 const handleFulfilledDel = (state, { payload }) => {
+  state.token = payload.token;
   state.contacts = state.contacts.filter(contact => contact.id !== payload.id);
 };
 

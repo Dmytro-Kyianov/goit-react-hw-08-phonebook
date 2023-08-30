@@ -1,13 +1,33 @@
-import css from './ContactList.module.css';
-
-import { useSelector, useDispatch } from 'react-redux';
-import { filterForContacts } from 'redux/filterContactsSlice';
-import { getContactsThunk, deleteContactsThunk } from 'redux/thunk';
+import { AiFillDelete } from 'react-icons/ai';
+import { IconContext } from 'react-icons';
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Spinner } from 'components/Loader/Loader';
+import { filterForContacts } from 'redux/contacts/filterContactsSlice';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import {
+  getContactsThunk,
+  deleteContactsThunk,
+} from 'redux/contacts/contactsOperations';
+
+import {
+  ContactFrame,
+  List,
+  ContactWrap,
+  DelBtn,
+  ContactCard,
+  ContactValues,
+} from './ContactList.styled';
+
+Notify.init({
+  width: '300px',
+  position: 'right-top',
+  closeButton: false,
+  timeout: 2500,
+});
 
 export const ContactList = () => {
-  const { contacts, error, isLoading} = useSelector(state => state.contacts);
+  const { contacts, error, isLoading } = useSelector(state => state.contacts);
   const filter = useSelector(filterForContacts);
   const dispatch = useDispatch();
 
@@ -20,27 +40,31 @@ export const ContactList = () => {
   );
 
   return (
-    <>{isLoading&&<Spinner/>}
-      {error && <p>error</p>}
+    <>
+      {isLoading && <Spinner />}
+      {error && Notify.failure(error)}
       {filteredContacts && (
-        <ul className={css.list}>
-          {filteredContacts.map(({ name, phone, id }) => (
-            <li key={id} className={css.contactList}>
-              <div className={css.contact}>
-                <p>
-                  {name}: {phone}
-                </p>
-                <button
+        <ContactWrap>
+          {filteredContacts.map(({ name, number, id }) => (
+            <List key={id}>
+              <ContactFrame>
+                <ContactCard>
+                  <ContactValues>{name} :</ContactValues>
+                  <ContactValues>{number}</ContactValues>
+                </ContactCard>
+
+                <DelBtn
                   type="button"
                   onClick={() => dispatch(deleteContactsThunk(id))}
-                  className={css.btnDelete}
                 >
-                  Delete
-                </button>
-              </div>
-            </li>
+                  <IconContext.Provider value={{ size: '25' }}>
+                    <AiFillDelete />
+                  </IconContext.Provider>
+                </DelBtn>
+              </ContactFrame>
+            </List>
           ))}
-        </ul>
+        </ContactWrap>
       )}
     </>
   );
