@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/goit-react-hw-08-phonebook/static/css/main.d4c47a68.css",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.0dcbad57.js",
+    "static/js/485.440b17e8.chunk.js": "/goit-react-hw-08-phonebook/static/js/485.440b17e8.chunk.js",
+    "static/js/854.6b652154.chunk.js": "/goit-react-hw-08-phonebook/static/js/854.6b652154.chunk.js",
+    "static/js/427.29284919.chunk.js": "/goit-react-hw-08-phonebook/static/js/427.29284919.chunk.js",
+    "static/js/910.8a0b8085.chunk.js": "/goit-react-hw-08-phonebook/static/js/910.8a0b8085.chunk.js",
+    "static/js/264.7969e556.chunk.js": "/goit-react-hw-08-phonebook/static/js/264.7969e556.chunk.js",
+    "static/js/568.1e257c10.chunk.js": "/goit-react-hw-08-phonebook/static/js/568.1e257c10.chunk.js",
+    "static/js/409.28682f93.chunk.js": "/goit-react-hw-08-phonebook/static/js/409.28682f93.chunk.js",
+    "static/media/phone-and-old-book.jpg": "/goit-react-hw-08-phonebook/static/media/phone-and-old-book.2dbc29e278beb2ceab3c.jpg",
+    "index.html": "/goit-react-hw-08-phonebook/index.html",
+    "main.d4c47a68.css.map": "/goit-react-hw-08-phonebook/static/css/main.d4c47a68.css.map",
+    "main.0dcbad57.js.map": "/goit-react-hw-08-phonebook/static/js/main.0dcbad57.js.map",
+    "485.440b17e8.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/485.440b17e8.chunk.js.map",
+    "854.6b652154.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/854.6b652154.chunk.js.map",
+    "427.29284919.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/427.29284919.chunk.js.map",
+    "910.8a0b8085.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/910.8a0b8085.chunk.js.map",
+    "264.7969e556.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/264.7969e556.chunk.js.map",
+    "568.1e257c10.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/568.1e257c10.chunk.js.map",
+    "409.28682f93.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/409.28682f93.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d4c47a68.css",
+    "static/js/main.0dcbad57.js"
+  ]
+}
